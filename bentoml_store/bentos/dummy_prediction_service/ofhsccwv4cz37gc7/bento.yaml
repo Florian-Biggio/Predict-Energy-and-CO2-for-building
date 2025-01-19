@@ -1,0 +1,50 @@
+service: service2:svc
+name: dummy_prediction_service
+version: ofhsccwv4cz37gc7
+bentoml_version: 1.3.19
+creation_time: '2025-01-18T21:09:03.214372+00:00'
+labels:
+  project: energy-co2-predictions
+  owner: Florian Biggio
+models: []
+entry_service: dummy_prediction_service
+services: []
+envs: []
+schema: {}
+spec: 1
+runners:
+- name: dummymodelrunnable
+  runnable_type: DummyModelRunnable
+  embedded: false
+  models: []
+  resource_config: null
+apis:
+- name: predict
+  input_type: JSON
+  output_type: JSON
+docker:
+  distro: null
+  python_version: '3.9'
+  cuda_version: null
+  env: null
+  system_packages: null
+  setup_script: null
+  base_image: bentoml/model-server:latest
+  dockerfile_template: null
+python:
+  requirements_txt: ./requirements.txt
+  packages: null
+  lock_packages: true
+  pack_git_packages: true
+  index_url: null
+  no_index: null
+  trusted_host: null
+  find_links: null
+  extra_index_url: null
+  pip_args: null
+  wheels: null
+conda:
+  environment_yml: null
+  channels: null
+  dependencies: null
+  pip: null

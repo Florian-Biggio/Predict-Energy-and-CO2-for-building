@@ -1,0 +1,38 @@
+conda:
+  channels: null
+  dependencies: null
+  environment_yml: null
+  pip: null
+description: Energy and CO2 prediction of Seattle buildings
+docker:
+  base_image: bentoml/model-server:latest
+  cuda_version: null
+  distro: null
+  dockerfile_template: null
+  env: null
+  python_version: '3.9'
+  setup_script: null
+  system_packages: null
+envs: []
+exclude:
+- tests/
+include:
+- '*.py'
+labels:
+  owner: Florian Biggio
+  project: energy-co2-predictions
+models: []
+name: null
+python:
+  extra_index_url: null
+  find_links: null
+  index_url: null
+  lock_packages: true
+  no_index: null
+  pack_git_packages: true
+  packages: null
+  pip_args: null
+  requirements_txt: ./requirements.txt
+  trusted_host: null
+  wheels: null
+service: service2:svc

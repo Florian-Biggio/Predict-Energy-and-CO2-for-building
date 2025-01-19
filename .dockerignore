@@ -1,0 +1,22 @@
+# Exclude BentoML local store
+BentoMLStore/
+
+# Exclude Python cache and temporary files
+__pycache__/
+*.pyc
+*.pyo
+
+# Exclude git and other unnecessary files
+.git/
+*.log
+README.md
+LICENSE
+
+# Exclude training data
+*.csv
+# Exclude notebooks
+*.ipynb
+# Exclude presentation
+*.odp
+*.pdf
+images/
