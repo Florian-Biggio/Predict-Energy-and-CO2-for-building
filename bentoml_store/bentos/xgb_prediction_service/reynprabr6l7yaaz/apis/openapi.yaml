@@ -1,0 +1,446 @@
+components:
+  schemas:
+    InputSchema:
+      properties:
+        Age:
+          description: Building age must be non-negative.
+          minimum: 0
+          title: Age
+          type: integer
+        BuildingType:
+          description: Building type.
+          enum:
+          - NonResidential
+          - Nonresidential COS
+          - Nonresidential WA
+          title: Buildingtype
+          type: string
+        CouncilDistrictCode:
+          description: City council code between 1 and 7.
+          enum:
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          - 7
+          title: Councildistrictcode
+          type: integer
+        ENERGYSTARScore:
+          description: Energy Star score (0-100).
+          maximum: 100.0
+          minimum: 0.0
+          title: Energystarscore
+          type: number
+        ElectricityUse:
+          description: True if Electricity is used, False otherwise.
+          title: Electricityuse
+          type: boolean
+        LargestPropertyUseType:
+          description: Main use type of the property.
+          enum:
+          - Adult Education
+          - Automobile Dealership
+          - Bank Branch
+          - College/University
+          - Convention Center
+          - Courthouse
+          - Data Center
+          - Distribution Center
+          - Financial Office
+          - Fire Station
+          - Fitness Center/Health Club/Gym
+          - Food Service
+          - Hospital (General Medical & Surgical)
+          - Hotel
+          - K-12 School
+          - Laboratory
+          - Library
+          - Lifestyle Center
+          - Manufacturing/Industrial Plant
+          - Medical Office
+          - Movie Theater
+          - Multifamily Housing
+          - Museum
+          - Non-Refrigerated Warehouse
+          - Office
+          - Other
+          - Other - Education
+          - Other - Entertainment/Public Assembly
+          - Other - Lodging/Residential
+          - Other - Mall
+          - Other - Public Services
+          - Other - Recreation
+          - Other - Restaurant/Bar
+          - Other - Services
+          - Other - Utility
+          - Other/Specialty Hospital
+          - Parking
+          - Performing Arts
+          - Personal Services (Health/Beauty, Dry Cleaning, etc)
+          - Police Station
+          - Pre-school/Daycare
+          - Prison/Incarceration
+          - Refrigerated Warehouse
+          - Repair Services (Vehicle, Shoe, Locksmith, etc)
+          - Residence Hall/Dormitory
+          - Residential Care Facility
+          - Restaurant
+          - Retail Store
+          - Self-Storage Facility
+          - Senior Care Community
+          - Social/Meeting Hall
+          - Strip Mall
+          - Supermarket/Grocery Store
+          - Urgent Care/Clinic/Other Outpatient
+          - Wholesale Club/Supercenter
+          - Worship Facility
+          title: Largestpropertyusetype
+          type: string
+        NaturalGasUse:
+          description: True if Natural Gas is used, False otherwise.
+          title: Naturalgasuse
+          type: boolean
+        NumberofFloors:
+          description: Number of floors, between 1 and 11
+          maximum: 11
+          minimum: 1
+          title: Numberoffloors
+          type: integer
+        PropertyGFABuilding:
+          description: Building Gross Floor Area (GFA) must not be negative, do not
+            include parking.
+          minimum: 0.0
+          title: Propertygfabuilding
+          type: number
+        PropertyGFAWithParking:
+          description: Total Gross Floor Area (GFA) must not be negative, include
+            parking if relevant.
+          minimum: 0.0
+          title: Propertygfawithparking
+          type: number
+        PropertyParking:
+          description: True if the building includes a parking.
+          ge: 0
+          title: Propertyparking
+          type: boolean
+        SteamUse:
+          description: True if Steam is used, False otherwise.
+          title: Steamuse
+          type: boolean
+      required:
+      - PropertyGFAWithParking
+      - PropertyParking
+      - PropertyGFABuilding
+      - ENERGYSTARScore
+      - SteamUse
+      - ElectricityUse
+      - NaturalGasUse
+      - Age
+      - BuildingType
+      - NumberofFloors
+      - CouncilDistrictCode
+      - LargestPropertyUseType
+      title: InputSchema
+      type: object
+    InternalServerError:
+      description: Internal Server Error
+      properties:
+        detail:
+          title: Error Detail
+          type: string
+        error:
+          title: Message
+          type: string
+      required:
+      - error
+      title: InternalServerError
+      type: object
+    InvalidArgument:
+      description: Bad Request
+      properties:
+        detail:
+          title: Error Detail
+          type: string
+        error:
+          title: Message
+          type: string
+      required:
+      - error
+      title: InvalidArgument
+      type: object
+    NotFound:
+      description: Not Found
+      properties:
+        detail:
+          title: Error Detail
+          type: string
+        error:
+          title: Message
+          type: string
+      required:
+      - error
+      title: NotFound
+      type: object
+info:
+  contact:
+    email: contact@bentoml.com
+    name: BentoML Team
+  description: "# xgb_prediction_service:dev\n\n[![pypi_status](https://img.shields.io/badge/BentoML-1.3.19-informational)](https://pypi.org/project/BentoML)\n\
+    [![documentation_status](https://readthedocs.org/projects/bentoml/badge/?version=latest)](https://docs.bentoml.com/)\n\
+    [![join_slack](https://badgen.net/badge/Join/BentoML%20Slack/cyan?icon=slack)](https://l.bentoml.com/join-slack-swagger)\n\
+    [![BentoML GitHub Repo](https://img.shields.io/github/stars/bentoml/bentoml?style=social)](https://github.com/bentoml/BentoML)\n\
+    [![Twitter Follow](https://img.shields.io/twitter/follow/bentomlai?label=Follow%20BentoML&style=social)](https://twitter.com/bentomlai)\n\
+    \nThis is a Machine Learning Service created with BentoML.\n| InferenceAPI | Input\
+    \ | Output |\n| ------------ | ----- | ------ |\n| POST [`/predict`](#operations-Service_APIs-xgb_prediction_service__predict)\
+    \ | JSON | JSON |\n\n\n\n\n## Help\n\n* [\U0001F4D6 Documentation](https://docs.bentoml.com/en/latest/):\
+    \ Learn how to use BentoML.\n* [\U0001F4AC Community](https://l.bentoml.com/join-slack-swagger):\
+    \ Join the BentoML Slack community.\n* [\U0001F41B GitHub Issues](https://github.com/bentoml/BentoML/issues):\
+    \ Report bugs and feature requests.\n* Tip: you can also [customize this README](https://docs.bentoml.com/en/latest/reference/bentoml/bento-build-options.html#description).\n"
+  title: xgb_prediction_service
+  version: None
+openapi: 3.0.2
+paths:
+  /healthz:
+    get:
+      description: Health check endpoint. Expecting an empty response with status
+        code <code>200</code> when the service is in health state. The <code>/healthz</code>
+        endpoint is <b>deprecated</b>. (since Kubernetes v1.16)
+      responses:
+        '200':
+          description: Successful Response
+      tags:
+      - Infrastructure
+  /livez:
+    get:
+      description: Health check endpoint for Kubernetes. Healthy endpoint responses
+        with a <code>200</code> OK status.
+      responses:
+        '200':
+          description: Successful Response
+      tags:
+      - Infrastructure
+  /metrics:
+    get:
+      description: Prometheus metrics endpoint. The <code>/metrics</code> responses
+        with a <code>200</code>. The output can then be used by a Prometheus sidecar
+        to scrape the metrics of the service.
+      responses:
+        '200':
+          description: Successful Response
+      tags:
+      - Infrastructure
+  /predict:
+    post:
+      consumes:
+      - application/json
+      description: Make predictions based on property data.
+      operationId: xgb_prediction_service__predict
+      produces:
+      - application/json
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                Age:
+                  description: Building age must be non-negative.
+                  minimum: 0
+                  title: Age
+                  type: integer
+                BuildingType:
+                  description: Building type.
+                  enum:
+                  - NonResidential
+                  - Nonresidential COS
+                  - Nonresidential WA
+                  title: Buildingtype
+                  type: string
+                CouncilDistrictCode:
+                  description: City council code between 1 and 7.
+                  enum:
+                  - 1
+                  - 2
+                  - 3
+                  - 4
+                  - 5
+                  - 6
+                  - 7
+                  title: Councildistrictcode
+                  type: integer
+                ENERGYSTARScore:
+                  description: Energy Star score (0-100).
+                  maximum: 100.0
+                  minimum: 0.0
+                  title: Energystarscore
+                  type: number
+                ElectricityUse:
+                  description: True if Electricity is used, False otherwise.
+                  title: Electricityuse
+                  type: boolean
+                LargestPropertyUseType:
+                  description: Main use type of the property.
+                  enum:
+                  - Adult Education
+                  - Automobile Dealership
+                  - Bank Branch
+                  - College/University
+                  - Convention Center
+                  - Courthouse
+                  - Data Center
+                  - Distribution Center
+                  - Financial Office
+                  - Fire Station
+                  - Fitness Center/Health Club/Gym
+                  - Food Service
+                  - Hospital (General Medical & Surgical)
+                  - Hotel
+                  - K-12 School
+                  - Laboratory
+                  - Library
+                  - Lifestyle Center
+                  - Manufacturing/Industrial Plant
+                  - Medical Office
+                  - Movie Theater
+                  - Multifamily Housing
+                  - Museum
+                  - Non-Refrigerated Warehouse
+                  - Office
+                  - Other
+                  - Other - Education
+                  - Other - Entertainment/Public Assembly
+                  - Other - Lodging/Residential
+                  - Other - Mall
+                  - Other - Public Services
+                  - Other - Recreation
+                  - Other - Restaurant/Bar
+                  - Other - Services
+                  - Other - Utility
+                  - Other/Specialty Hospital
+                  - Parking
+                  - Performing Arts
+                  - Personal Services (Health/Beauty, Dry Cleaning, etc)
+                  - Police Station
+                  - Pre-school/Daycare
+                  - Prison/Incarceration
+                  - Refrigerated Warehouse
+                  - Repair Services (Vehicle, Shoe, Locksmith, etc)
+                  - Residence Hall/Dormitory
+                  - Residential Care Facility
+                  - Restaurant
+                  - Retail Store
+                  - Self-Storage Facility
+                  - Senior Care Community
+                  - Social/Meeting Hall
+                  - Strip Mall
+                  - Supermarket/Grocery Store
+                  - Urgent Care/Clinic/Other Outpatient
+                  - Wholesale Club/Supercenter
+                  - Worship Facility
+                  title: Largestpropertyusetype
+                  type: string
+                NaturalGasUse:
+                  description: True if Natural Gas is used, False otherwise.
+                  title: Naturalgasuse
+                  type: boolean
+                NumberofFloors:
+                  description: Number of floors, between 1 and 11
+                  maximum: 11
+                  minimum: 1
+                  title: Numberoffloors
+                  type: integer
+                PropertyGFABuilding:
+                  description: Building Gross Floor Area (GFA) must not be negative,
+                    do not include parking.
+                  minimum: 0.0
+                  title: Propertygfabuilding
+                  type: number
+                PropertyGFAWithParking:
+                  description: Total Gross Floor Area (GFA) must not be negative,
+                    include parking if relevant.
+                  minimum: 0.0
+                  title: Propertygfawithparking
+                  type: number
+                PropertyParking:
+                  description: True if the building includes a parking.
+                  ge: 0
+                  title: Propertyparking
+                  type: boolean
+                SteamUse:
+                  description: True if Steam is used, False otherwise.
+                  title: Steamuse
+                  type: boolean
+              required:
+              - PropertyGFAWithParking
+              - PropertyParking
+              - PropertyGFABuilding
+              - ENERGYSTARScore
+              - SteamUse
+              - ElectricityUse
+              - NaturalGasUse
+              - Age
+              - BuildingType
+              - NumberofFloors
+              - CouncilDistrictCode
+              - LargestPropertyUseType
+              title: InputSchema
+              type: object
+        required: true
+        x-bentoml-io-descriptor:
+          args:
+            has_json_encoder: false
+            has_pydantic_model: true
+          id: bentoml.io.JSON
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Successful Response
+          x-bentoml-io-descriptor:
+            args:
+              has_json_encoder: false
+              has_pydantic_model: false
+            id: bentoml.io.JSON
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidArgument'
+          description: Bad Request
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+          description: Not Found
+        500:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: Internal Server Error
+      summary: "InferenceAPI(JSON \u2192 JSON)"
+      tags:
+      - Service APIs
+      x-bentoml-name: predict
+  /readyz:
+    get:
+      description: A <code>200</code> OK status from <code>/readyz</code> endpoint
+        indicated the service is ready to accept traffic. From that point and onward,
+        Kubernetes will use <code>/livez</code> endpoint to perform periodic health
+        checks.
+      responses:
+        '200':
+          description: Successful Response
+      tags:
+      - Infrastructure
+servers:
+- url: .
+tags:
+- description: BentoML Service API endpoints for inference.
+  name: Service APIs
+- description: Common infrastructure endpoints for observability.
+  name: Infrastructure

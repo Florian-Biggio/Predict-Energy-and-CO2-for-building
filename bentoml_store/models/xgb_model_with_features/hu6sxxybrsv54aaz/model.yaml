@@ -1,0 +1,21 @@
+name: xgb_model_with_features
+version: hu6sxxybrsv54aaz
+module: bentoml.xgboost
+labels: {}
+options:
+  model_class: XGBRegressor
+metadata: {}
+context:
+  framework_name: xgboost
+  framework_versions:
+    xgboost: 2.1.3
+  bentoml_version: 1.3.19
+  python_version: 3.13.1
+signatures:
+  predict:
+    batchable: true
+    batch_dim:
+    - 0
+    - 0
+api_version: v2
+creation_time: '2025-03-15T10:57:08.326283+00:00'

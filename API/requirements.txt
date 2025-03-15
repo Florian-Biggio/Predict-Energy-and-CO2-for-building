@@ -1,6 +1,7 @@
 bentoml
 xgboost
 pandas
-scikit-learn
+scikit-learn==1.5.2
 pydantic
 bentoml==1.3.19
+NumPy == 2.1

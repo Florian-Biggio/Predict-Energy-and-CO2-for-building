@@ -1,4 +1,4 @@
-service: service2:svc  # Remove the 2 for prod
+service: service:svc  # Remove the 2 for prod
 description: "Energy and CO2 prediction of Seattle buildings"
 labels:
   project: "energy-co2-predictions"
